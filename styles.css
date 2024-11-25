@@ -1,0 +1,390 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+    position: relative;
+}
+
+/* Background animation container */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(130deg, #1e1e1e, #2a2a2a, #333);
+    background-size: 400% 400%; /* Makes the gradient larger and smoother */
+    animation: animateBackground 15s ease infinite; /* Slower, smoother animation */
+    z-index: 0;
+    pointer-events: none; /* Allows clicks through the background */
+}
+
+/* Background gradient animation */
+@keyframes animateBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+header, section, footer {
+    position: relative;
+    z-index: 10; /* Keeps content above the animated background */
+}
+
+/* Header */
+header {
+    background-color: transparent; /* Make it transparent for a modern floating effect */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(10px); /* Blur effect for modern feel */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8); /* Shadow to give depth */
+}
+
+/* Navbar container */
+.navbar {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Navigation List */
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem; /* Spacing between the nav items */
+}
+
+/* Navigation Links */
+.nav-list a {
+    color: #e0e0e0; /* Light grey text */
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    position: relative;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Hover Effect with glow */
+.nav-list a::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #00d1b2; /* Teal underline on hover */
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-list a:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+.nav-list a:hover {
+    color: #00d1b2; /* Teal text color on hover */
+    text-shadow: 0 0 10px #00d1b2; /* Glowing text shadow */
+}
+
+/* Active Link Glow */
+.nav-list a.active {
+    color: #00d1b2;
+    text-shadow: 0 0 15px #00d1b2; /* Glowing active link */
+}
+
+/* Section Styling */
+.section {
+    padding: 4rem 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Home Section */
+.home {
+    background-color: transparent;
+    color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 5rem);
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.intro {
+    font-size: 1.5rem;
+    color: #00d1b2;
+    margin-bottom: 2rem;
+}
+
+/* Separation between Home and About (a line) */
+#about {
+    border-top: 2px solid #00d1b2; /* Teal line to separate sections */
+    padding-top: 2rem; /* Adds space above the About section */
+    background-color: #2a2a2a; /* Solid grey background for the About section */
+    position: relative;
+    z-index: 10; /* Ensure it stays above the particles */
+}
+
+/* Apply the same grey background and positioning for all sections under About */
+#projects, #contact, #skills {
+    background-color: #2a2a2a; /* Same grey background */
+    position: relative;
+    z-index: 10; /* Ensure these sections stay above the particle animation */
+    padding-top: 2rem;
+}
+
+/* Optional: If you want to visually separate each section like About */
+#projects {
+    border-top: 2px solid #00d1b2; /* Teal line separating Projects */
+}
+
+#contact {
+    border-top: 2px solid #00d1b2; /* Teal line separating Contact */
+}
+
+#skills {
+    border-top: 2px solid #00d1b2; /* Teal line separating Contact */
+}
+
+/* Social buttons container */
+.social-buttons {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Space between the buttons */
+}
+
+/* Button styling */
+.social-buttons .button {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2a2a2a; /* Dark grey background for the button */
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 209, 178, 0.5); /* Initial soft glow */
+}
+
+.social-buttons .button img {
+    width: 35px; /* Icon size */
+    height: 35px;
+}
+
+/* Glowing hover effect for buttons */
+.social-buttons .button:hover {
+    border-color: #00d1b2; /* Teal border glow */
+    box-shadow: 0 0 20px #00d1b2, 0 0 40px #00d1b2, 0 0 60px #00d1b2;
+    transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+/* Individual button colors (optional) for more distinction */
+.social-buttons .discord:hover {
+    box-shadow: 0 0 20px #7289da, 0 0 40px #7289da, 0 0 60px #7289da; /* Discord purple glow */
+}
+
+.social-buttons .github:hover {
+    box-shadow: 0 0 20px #00fff2, 0 0 40px #00fff2, 0 0 60px #00fff2; /* GitHub black glow */
+}
+
+.social-buttons .youtube:hover {
+    box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 60px #ff0000; /* YouTube red glow */
+}
+
+.social-buttons .gunslol:hover {
+    box-shadow: 0 0 20px #ffdd57, 0 0 40px #ffdd57, 0 0 60px #ffdd57; /* Guns.lol yellow glow */
+}
+
+.social-buttons .steam:hover {
+    box-shadow: 0 0 20px #00acee, 0 0 40px #00acee, 0 0 60px #00acee; /* Steam blue glow */
+}
+
+/* Skills List Styling */
+.skills-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0;
+    color: #cfcfcf;
+}
+
+.skills-list li {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: #00d1b2; /* Teal color for skills */
+}
+
+/* Quote Styling */
+.quote {
+    margin-top: 2rem;
+    font-style: italic;
+    color: #ffdd57; /* A glowing yellow for emphasis */
+    font-size: 1.3rem;
+}
+
+/* Skills Section */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.skill-item img {
+    width: 80px;
+    height: 80px;
+    transition: transform 0.3s ease;
+}
+
+.skill-item:hover img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px #00d1b2);
+}
+
+.skill-item p {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    color: #00d1b2;
+}
+
+
+
+
+/* About Section */
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 209, 178, 0.8), 0 0 20px rgba(0, 209, 178, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 5px;
+    background: #00d1b2; /* Cyan line under heading */
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    box-shadow: 0 0 15px rgba(0, 209, 178, 0.8);
+}
+
+p {
+    font-size: 1.2rem;
+    color: #cfcfcf;
+}
+
+/* Projects Section */
+.projects-list {
+    list-style: none;
+    padding: 0;
+}
+
+.projects-list li {
+    margin-bottom: 1rem;
+}
+
+.projects-list a {
+    color: #00d1b2;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.projects-list a:hover {
+    color: #ff3860; /* Red hover for project links */
+}
+
+/* Contact Section */
+a {
+    color: #00d1b2;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ff3860;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    padding: 1.5rem 0;
+    color: #e0e0e0;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .nav-list li {
+        margin: 0.5rem 0;
+    }
+}
+/* Style the canvas */
+#particlesCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* Behind the main content */
+    pointer-events: none; /* Allows interactions to pass through */
+}
